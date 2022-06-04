@@ -20,6 +20,10 @@ const MessageForm = (props) => {
         isTyping(props, chatId);
     }
 
+    const handleUpload = (event) => {
+        sendMessage(creds, chatId, {files: event.target.files, text: ''})
+    }
+
     return(
         <form className="message-form" onSubmit={handleSubmit}>
             <input className="input-form" value={value} placeholder="Send a message..." onChange={handleChange} onSubmit={handleSubmit} />
@@ -29,6 +33,9 @@ const MessageForm = (props) => {
                 </span>
             </label>
             <input type={'file'} multiple={false} id="upload-button" style={{ display: 'none' }} onChange={handleUpload} />
+            <button type="submit" className="send-button">
+                <SendOutlined className="send-icon" />
+            </button>
         </form>
     )
 }
